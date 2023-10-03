@@ -73,7 +73,7 @@ if selected == "Employee":
                 placeholder3.empty()
                 placeholder4.empty()
                 if st.checkbox("Check my location"):
-                    try:
+                   # try:
                         user_agent = 'user_me_{}'.format(randint(10000, 99999))
                         geolocator = Nominatim(user_agent=user_agent)
                         loc = get_geolocation()
@@ -86,8 +86,8 @@ if selected == "Employee":
                         # Target_Location = employees[employee_code][2]
                         # Distance = round(geopy.distance.geodesic(Target_Location, actual_coordinates).km, 2)
                         st.write(actual_coordinates," \n ", location)
-                    except:
-                        st.write("Loading.................")
+                    #except:
+                     #   st.write("Loading.................")
 
                     if st.button("Submit"):
                         scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
