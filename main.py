@@ -73,21 +73,21 @@ if selected == "Employee":
                 placeholder3.empty()
                 placeholder4.empty()
                 if st.checkbox("Check my location"):
-                   # try:
-                    user_agent = 'user_me_{}'.format(randint(10000, 99999))
-                    geolocator = Nominatim(user_agent = 'MYAPP')
-                    loc = get_geolocation()
-                    ti.sleep(2.5)
-                    latitude = loc['coords']['latitude']
-                    longitude = loc['coords']['longitude']
-                    actual_coordinates = "{},{}".format(latitude, longitude)
-                    location = geolocator.reverse(actual_coordinates)
-                    address = location.raw['address']
-                    # Target_Location = employees[employee_code][2]
-                    # Distance = round(geopy.distance.geodesic(Target_Location, actual_coordinates).km, 2)
-                    st.write(actual_coordinates," \n ", location)
-                    #except:
-                     #   st.write("Loading.................")
+                   try:
+                        user_agent = 'user_me_{}'.format(randint(10000, 99999))
+                        geolocator = Nominatim(user_agent = 'MYAPP')
+                        loc = get_geolocation()
+                        ti.sleep(2.5)
+                        latitude = loc['coords']['latitude']
+                        longitude = loc['coords']['longitude']
+                        actual_coordinates = "{},{}".format(latitude, longitude)
+                        location = geolocator.reverse(actual_coordinates)
+                        address = location.raw['address']
+                        # Target_Location = employees[employee_code][2]
+                        # Distance = round(geopy.distance.geodesic(Target_Location, actual_coordinates).km, 2)
+                        st.write(actual_coordinates," \n ", location)
+                    except:
+                        st.write("Loading.................")
 
                     if st.button("Submit"):
                         scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
