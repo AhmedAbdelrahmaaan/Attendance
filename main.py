@@ -97,7 +97,7 @@ if selected == "Employee":
                         sh = client.open('Employee Data').worksheet('Sheet2')
                         row = [code, name,Project,date,timestamp,str(location),str(utc),str(t),str(OFFSET)]
                         sh.append_row(row)
-            elif nonConfirm:
+            #elif nonConfirm:
                 #pyautogui.hotkey("ctrl", "F5")
 
 elif selected == "Company":
