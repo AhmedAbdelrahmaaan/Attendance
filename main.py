@@ -75,7 +75,7 @@ if selected == "Employee":
                 if st.checkbox("Check my location"):
                    # try:
                     user_agent = 'user_me_{}'.format(randint(10000, 99999))
-                    geolocator = Nominatim(user_agent=user_agent)
+                    geolocator = Nominatim()
                     loc = get_geolocation()
                     ti.sleep(2.5)
                     latitude = loc['coords']['latitude']
