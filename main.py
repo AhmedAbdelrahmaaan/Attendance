@@ -13,7 +13,7 @@ import pytz
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import numpy as np
-import pyautogui
+#import pyautogui
 from streamlit_option_menu import option_menu
 
 selected = option_menu(menu_title=None,options=["Company","Employee"],icons=["building","person-vcard-fill"],orientation="horizontal")
@@ -51,7 +51,7 @@ if selected == "Employee":
         if int(code) not in df["Employee Code"].values:
             st.error("Wrong Code!")
             ti.sleep(1)
-            pyautogui.hotkey("ctrl", "F5")
+            #pyautogui.hotkey("ctrl", "F5")
         else:
             placeholder1, placeholder2, placeholder3,placeholder4 = st.empty(), st.empty(), st.empty(), st.empty()
             name = df[df["Employee Code"]==int(code)]["Employee Name"].values[0]
@@ -98,7 +98,7 @@ if selected == "Employee":
                         row = [code, name,Project,date,timestamp,str(location),str(utc),str(t),str(OFFSET)]
                         sh.append_row(row)
             elif nonConfirm:
-                pyautogui.hotkey("ctrl", "F5")
+                #pyautogui.hotkey("ctrl", "F5")
 
 elif selected == "Company":
     text1,text2 = st.empty(),st.empty()
