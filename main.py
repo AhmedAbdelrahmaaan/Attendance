@@ -33,7 +33,7 @@ if selected == "Employee":
 
     nonConfirm = False
 
-    col1, col2 = st.columns([1,6])
+    col1, col2 = st.columns([1,3])
     with col1:
         st.image("Smart FieldLogo.jpg")
     with col2:
