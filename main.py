@@ -37,7 +37,7 @@ if selected == "Employee":
     with col1:
         st.image("Smart FieldLogo.jpg")
     with col2:
-        st.title("Smart Field")
+        st.title("    Smart Field Application")
     text = st.empty()
     code = text.text_input("****Enter your code****",max_chars=4,key="1")
     if code!= "":
