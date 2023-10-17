@@ -9,11 +9,11 @@ from random import randint
 import time as ti
 import streamlit_authenticator as stauth
 from streamlit_gsheets import GSheetsConnection
-# import pytz
+import pytz
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import numpy as np
-import pyautogui
+#import pyautogui
 from streamlit_option_menu import option_menu
 from streamlit_extras.switch_page_button import switch_page
 from st_pages import Page, show_pages,hide_pages
