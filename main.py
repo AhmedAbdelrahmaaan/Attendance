@@ -9,7 +9,7 @@ from random import randint
 import time as ti
 import streamlit_authenticator as stauth
 from streamlit_gsheets import GSheetsConnection
-import pytz
+# import pytz
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import numpy as np
