@@ -29,9 +29,9 @@ def submit():
 if 'x' not in st.session_state:
      st.session_state['x'] = 0
 
-st.set_page_config(page_title="Login Page")
+# st.set_page_config(page_title="Login Page")
 
-show_pages([Page("main.py","Login Page")])
+# show_pages([Page("main.py","Login Page")])
 
 #Header
 col1, col2 = st.columns([1, 7])
