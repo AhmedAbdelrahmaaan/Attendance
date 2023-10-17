@@ -6,6 +6,9 @@ pandas==1.5.3
 PyAutoGUI==0.9.54
 pytz==2022.7
 st_gsheets_connection==0.0.3
+st_pages==0.4.5
 streamlit==1.24.1
 streamlit_authenticator==0.2.2
+streamlit_extras==0.3.4
+streamlit_js_eval==0.1.5
 streamlit_option_menu==0.3.6
