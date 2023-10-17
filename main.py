@@ -31,14 +31,14 @@ if 'x' not in st.session_state:
 
 st.set_page_config(page_title="Login Page")
 
-show_pages([Page("Login_Page.py","Login Page")])
+show_pages([Page("main.py","Login Page")])
 
 #Header
 col1, col2 = st.columns([1, 7])
 with col1:
-    st.image("ifmlogo.jpg",width=100)
+    st.image("Smart FieldLogo.jpg",width=100)
 with col2:
-    st.title("Intelligent For Field Marketing")
+    st.title("Smart Field Appliaction")
 
 
 #Time Capture Data
