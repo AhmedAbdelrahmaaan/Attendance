@@ -16,7 +16,7 @@ import numpy as np
 #import pyautogui
 from streamlit_option_menu import option_menu
 
-selected = option_menu(menu_title=None,options=["Company","Employee"],icons=["building","person-vcard-fill"],orientation="horizontal")
+selected = option_menu(menu_title=None,options=["Employee","Company"],icons=["person-vcard-fill","building"],orientation="horizontal")
 
 if selected == "Employee":
     time = dt.now()
@@ -33,11 +33,11 @@ if selected == "Employee":
 
     nonConfirm = False
 
-    col1, col2 = st.columns([1,4])
+    col1, col2 = st.columns([1,6])
     with col1:
-        st.image("ifmlogo.jpg")
+        st.image("Smart FieldLogo.jpg")
     with col2:
-        st.title("Daily Attendance")
+        st.title("Smart Field")
     text = st.empty()
     code = text.text_input("****Enter your code****",max_chars=4,key="1")
     if code!= "":
