@@ -138,7 +138,7 @@ if selected == "Employee":
                         #     creds = ServiceAccountCredentials.from_json_keyfile_name('gapi.json', scope)
                             client = gspread.authorize(creds)
                             sh = client.open('Employee Data').worksheet('Sheet2')
-                            row = [st.session_state.code, st.session_state.name,Project,st.session_state.date,st.session_state.store,str(location),str(utc),str(Now),str(timediff)]
+                            row = [st.session_state.code, st.session_state.name,Project,st.session_state.date,st.session_state.store,str(location),str(utc),str(Now),str(timediff),latitude,longitude]
                             sh.append_row(row)
                             st.success('This is a success message!', icon="✅")
                             ti.sleep(2)
