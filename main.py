@@ -139,7 +139,7 @@ if selected == "Employee":
                             sh = client.open('Employee Data').worksheet('Sheet2')
                             row = [st.session_state.code, st.session_state.name,Project,st.session_state.date,st.session_state.store,str(location),str(utc),str(Now),str(timediff)]
                             sh.append_row(row)
-                            st.sucess("Your response has been recorded")
+                            st.success('This is a success message!', icon="✅")
                             ti.sleep(2)
                             st.session_state.code = ""
                             st._rerun()
