@@ -50,7 +50,7 @@ time_format = "%Y-%m-%d  %H:%M:%S.%f"
 Now = dt.now().replace(tzinfo=None)
 utc = dt.utcnow().replace(tzinfo=pytz.UTC).replace(tzinfo=None)
 timediff = Now - utc
-Now = utc+3
+Now = dt.utcnow().replace(tzinfo=pytz.UTC)+3
 st.session_state.date = str(Now.date())
 
 
