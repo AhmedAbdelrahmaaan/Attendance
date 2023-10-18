@@ -54,7 +54,7 @@ st.session_state.date = str(Now.date())
 
 
 #Load Employee Data_Function
-@st.cache_data
+#@st.cache_data
 def fetch_and_clean_data():
     conn = st.experimental_connection("gsheets", type=GSheetsConnection)
 
@@ -64,7 +64,7 @@ def fetch_and_clean_data():
                    nrows=100)
     return Employee_df
 
-@st.cache_data
+#@st.cache_data
 def Attendance_Data():
     conn = st.experimental_connection("gsheets", type=GSheetsConnection)
 
@@ -139,6 +139,8 @@ if selected == "Employee":
                             sh = client.open('Employee Data').worksheet('Sheet2')
                             row = [st.session_state.code, st.session_state.name,Project,st.session_state.date,st.session_state.store,str(location),str(utc),str(Now),str(timediff)]
                             sh.append_row(row)
+                            st.sucess("Your response has been recorded")
+                            ti.sleep(2)
                             st.session_state.code = ""
                             st._rerun()
 
