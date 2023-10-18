@@ -71,7 +71,7 @@ def Attendance_Data():
 
     Employee_df = conn.read(worksheet="Sheet2",
                    ttl="10s",
-                   usecols=[0, 1, 2, 3, 4, 5, 6, 7, 8],
+                   usecols=[0, 1, 2, 3, 4, 5, 6, 7, 8,9,10],
                    nrows=1000)
     return Employee_df
 
