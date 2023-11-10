@@ -82,11 +82,11 @@ def Attendance_Data():
 selected = option_menu(menu_title=None,options=["Employee","Company","IFM Route"],icons=["person-vcard-fill","building","building"],orientation="horizontal")
 
 if selected == "Employee":
-    df = fetch_and_clean_data()
     #Login Details
     text = st.empty()
     code = text.text_input("****Enter your code****",max_chars=4,key="widget",on_change=submit)
     if  st.session_state.code != "":
+        df = fetch_and_clean_data()
         if int(st.session_state.code) not in df["Employee Code"].values:
             st.error("Wrong Code! Renter your Code")
 
