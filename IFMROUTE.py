@@ -1,6 +1,10 @@
 import pandas as pd
 from sklearn.cluster import KMeans, AgglomerativeClustering
 import matplotlib.pyplot as plt
+import numpy as np
+import logging
+from source_code.spectral_equal_size_clustering import SpectralEqualSizeClustering
+from source_code.visualisation import visualise_clusters
 
 # # Step 1: Read data from CSV file
 # df = pd.read_csv('Coordinates.csv')  # Replace 'coordinates.csv' with your CSV file path
@@ -64,7 +68,7 @@ import matplotlib.pyplot as plt
 # print(primary_to_subcluster)
 # df['Subcluster'] = primary_to_subcluster
 # df.to_excel("finalres.xlsx")
-
+from sklearn.cluster import BisectingKMeans
 def IFMROUTE(df,N_Routes,working_days):
     latitude = df['latitude'].values
     longitude = df['longitude'].values
@@ -80,10 +84,39 @@ def IFMROUTE(df,N_Routes,working_days):
         # print(mask,df)
         sliced_df = df[df['Route'] == primary_cluster_id]
         subcluster_data = sliced_df[['latitude', 'longitude']]
-        kmeans_subcluster = KMeans(n_clusters=len(working_days))  # You can change the number of subclusters
-        subcluster_labels = kmeans_subcluster.fit_predict(subcluster_data)
-        primary_to_subcluster.extend(list(subcluster_labels))
 
+        #Equally SpectralEqualSizeClustering
+        # logging.basicConfig()
+        # logging.getLogger().setLevel(logging.INFO)
+        # subcluster_data
+        # num_points = subcluster_data.shape[0]
+        # distance_matrix = np.zeros((num_points, num_points))
+        # from geopy.distance import distance
+        # for i in range(num_points):
+        #     for j in range(num_points):
+        #         coord_i = coordinates[i]
+        #         coord_j = coordinates[j]
+        #         distance_matrix[i, j] = distance(coord_i, coord_j).kilometers
+        #
+        # np.save('distance_matrix.npy', distance_matrix)
+        # dist_tr = np.load('distance_matrix.npy')
+        # clustering = SpectralEqualSizeClustering(nclusters=len(working_days),
+        #                                          nneighbors=int(dist_tr.shape[0] * 0.1),
+        #                                          equity_fraction=1,
+        #                                          seed=1234)
+        # labels = clustering.fit(dist_tr)
+
+
+        # Kmeans
+        # kmeans_subcluster = KMeans(n_clusters=len(working_days))  # You can change the number of subclusters
+        # subcluster_labels = kmeans_subcluster.fit_predict(subcluster_data)
+
+
+        # bisecting_kmeans
+        from sklearn.cluster import BisectingKMeans
+        # Import the data
+        bisect_means = BisectingKMeans(n_clusters=len(working_days), random_state=0).fit(subcluster_data)
+        primary_to_subcluster.extend(bisect_means.labels_)
     df['working_Days'] = primary_to_subcluster
 
     return df
