@@ -20,6 +20,9 @@ from st_pages import Page, show_pages,hide_pages
 from streamlit_extras.switch_page_button import switch_page
 import xlsxwriter
 from io import BytesIO
+from sklearn.cluster import KMeans, AgglomerativeClustering
+import io
+import matplotlib.pyplot as plt
 
 
 if 'code' not in st.session_state:
@@ -76,7 +79,7 @@ def Attendance_Data():
     return Employee_df
 
 # Main Page
-selected = option_menu(menu_title=None,options=["Employee","Company"],icons=["person-vcard-fill","building"],orientation="horizontal")
+selected = option_menu(menu_title=None,options=["Employee","Company","IFM Route"],icons=["person-vcard-fill","building","building"],orientation="horizontal")
 
 if selected == "Employee":
     df = fetch_and_clean_data()
@@ -195,3 +198,73 @@ elif selected == "Company":
             st.download_button("Dowmload Attendance Sheet", data=df_xlsx, file_name='Attendance from {} to {}.xlsx'.format(DATEfrom,DATETo),
                                mime="application/vnd.ms-excel")
 
+elif selected == "IFM Route":
+    text1, text2 = st.empty(), st.empty()
+    Companynameoriginal = "IFM"
+    Passwordoriginal = "1234"
+
+    Companyname = text1.text_input("****Company Name****", max_chars=20, key="3")
+    Password = text2.text_input("****Password****", max_chars=20, key="4",type='password')
+
+    if Companyname == Companynameoriginal and Password == Passwordoriginal:
+        text1.empty()
+        text2.empty()
+        N_Routes = st.number_input("Enter Number of Routes",step=1)
+        working_days = st.multiselect('What are working days?',['Saturday', 'Sunday', 'Monday', 'Tuesday','Wednesday','Thursday','Friday'])
+        working_days_dic = {}
+        for i in range(len(working_days)):
+            working_days_dic[i] = working_days[i]
+
+        Route_dic = {}
+        for i in range(N_Routes):
+            Route_dic[i] = f'Route_{i+1}'
+
+        storelist = st.file_uploader("Upload your storelist")
+        if storelist is not  None:
+            try:
+                storelist_df = pd.read_csv(storelist)
+            except:
+                storelist_df = pd.read_excel(storelist,engine="openpyxl")
+
+            from IFMROUTE import  IFMROUTE
+            storelist_df = IFMROUTE(storelist_df, N_Routes, working_days)
+            working_Days_color = (storelist_df['working_Days'] + 1).copy()
+            storelist_df['working_Days'] = storelist_df['working_Days'].replace(working_days_dic)
+            route_color = (storelist_df['Route']+1).copy()
+            storelist_df['Route'] = storelist_df['Route'].replace(Route_dic)
+            storelist_df['working_Days_2'] = storelist_df['working_Days']
+            idx = storelist_df.columns.tolist()
+            idx.pop(11)
+            df_pivoted = storelist_df.assign(Value=1).pivot(index= idx,columns='working_Days', values='Value').fillna(0).astype(int)
+            # st.write(df_pivoted)
+
+
+
+
+
+            def download_excel(df_pivoted):
+                # Save the pivoted DataFrame to an Excel file
+                excel_file = io.BytesIO()
+                df_pivoted.to_excel(excel_file, index=True, header=True)
+                excel_file.seek(0)
+                return excel_file
+
+
+            x = storelist_df["longitude"]
+            y = storelist_df["latitude"]
+            c = storelist_df['Route']
+            fig, ax = plt.subplots()
+            scatter = ax.scatter(storelist_df["longitude"], storelist_df["latitude"], c=working_Days_color, cmap='viridis')
+            ax.legend(*scatter.legend_elements(),loc="upper left", title="Routes")
+            # ax.add_artist(legend1)
+            ax.set_title("Routes in the selected area")
+            st.pyplot(fig)
+            st.write(storelist_df['Route'].value_counts().sort_index())
+
+
+            st.download_button(
+                label="Download Excel",
+                data=download_excel(df_pivoted),
+                file_name="storelist routes.xlsx",
+                key="download_button"
+            )
