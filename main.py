@@ -254,7 +254,7 @@ elif selected == "IFM Route":
             y = storelist_df["latitude"]
             c = storelist_df['Route']
             fig, ax = plt.subplots()
-            scatter = ax.scatter(storelist_df["longitude"], storelist_df["latitude"], c=working_Days_color, cmap='viridis')
+            scatter = ax.scatter(storelist_df["longitude"], storelist_df["latitude"], c=route_color, cmap='viridis')
             ax.legend(*scatter.legend_elements(),loc="upper left", title="Routes")
             # ax.add_artist(legend1)
             ax.set_title("Routes in the selected area")
