@@ -2,9 +2,6 @@ import pandas as pd
 from sklearn.cluster import KMeans, AgglomerativeClustering
 import matplotlib.pyplot as plt
 import numpy as np
-import logging
-from source_code.spectral_equal_size_clustering import SpectralEqualSizeClustering
-from source_code.visualisation import visualise_clusters
 
 # # Step 1: Read data from CSV file
 # df = pd.read_csv('Coordinates.csv')  # Replace 'coordinates.csv' with your CSV file path
