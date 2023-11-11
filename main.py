@@ -234,7 +234,8 @@ elif selected == "IFM Route":
             storelist_df['Route'] = storelist_df['Route'].replace(Route_dic)
             storelist_df['working_Days_2'] = storelist_df['working_Days'].copy()
             idx = storelist_df.columns.tolist()
-            idx.pop(11)
+            index_n = idx.index('working_Days')
+            idx.pop(index_n)
             df_pivoted = storelist_df.assign(Value=1).pivot(index= idx,columns='working_Days', values='Value').fillna(0).astype(int)
             # st.write(df_pivoted)
 
