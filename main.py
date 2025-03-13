@@ -134,7 +134,7 @@ if selected == "Employee":
                         #create this on secrects / TOML
                         ## google_service_account = {"type" = "service_account", "project_id", AND_SO_ON}
                         # Load credentials from Streamlit secrets
-                            google_service_account_info = st.secrets["google_service_account"]                        # google_service_account_info = st.secrets['google_service_account']
+                            google_service_account = st.secrets["google_service_account"]                        # google_service_account_info = st.secrets['google_service_account']
                         # creds = ServiceAccountCredentials.from_json_keyfile_dict(google_service_account_info, scope)
                             creds = ServiceAccountCredentials.from_json_keyfile_dict(google_service_account, scope)
 
