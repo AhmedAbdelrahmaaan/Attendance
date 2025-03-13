@@ -136,7 +136,8 @@ if selected == "Employee":
                         # Load credentials from Streamlit secrets
                             google_service_account = st.secrets["google_service_account"]                        # google_service_account_info = st.secrets['google_service_account']
                         # creds = ServiceAccountCredentials.from_json_keyfile_dict(google_service_account_info, scope)
-                            creds = ServiceAccountCredentials.from_json_keyfile_dict(google_service_account, scope)
+                            creds =  service_account.Credentials.from_service_account_info(google_service_account, scope)
+                            # ServiceAccountCredentials.from_json_keyfile_dict(google_service_account, scope)
 
                         #     creds = ServiceAccountCredentials.from_json_keyfile_name('gapi.json', scope)
                             client = gspread.authorize(creds)
