@@ -35,9 +35,9 @@ def submit():
 # Header
 col1, col2 = st.columns([1, 7])
 with col1:
-    st.image("Smart FieldLogo.jpg", width=100)
+    st.image("ELIOSLOGO.png", width=100)
 with col2:
-    st.title("Smart Field Application")
+    st.title("ELIOS Market Scan Application")
 
 # Time Capture Data
 time_format = "%Y-%m-%d  %H:%M:%S.%f"
@@ -127,7 +127,7 @@ def write_to_google_sheets(row_data):
 
 
 # Main Page
-selected = option_menu(menu_title=None, options=["Employee", "Company", "IFM Route"],
+selected = option_menu(menu_title=None, options=["Employee", "Company", "Elios Route"],
                        icons=["person-vcard-fill", "building", "building"], orientation="horizontal")
 
 if selected == "Employee":
@@ -187,7 +187,7 @@ if selected == "Employee":
 
 elif selected == "Company":
     text1, text2 = st.empty(), st.empty()
-    Companynameoriginal = "IFM"
+    Companynameoriginal = "Elios"
     Passwordoriginal = "1234"
 
     Companyname = text1.text_input("****Company Name****", max_chars=20, key="3")
@@ -230,9 +230,9 @@ elif selected == "Company":
                                file_name='Attendance from {} to {}.xlsx'.format(DATEfrom, DATETo),
                                mime="application/vnd.ms-excel")
 
-elif selected == "IFM Route":
+elif selected == "Elios Route":
     text1, text2 = st.empty(), st.empty()
-    Companynameoriginal = "IFM"
+    Companynameoriginal = "ELIOS"
     Passwordoriginal = "1234"
 
     Companyname = text1.text_input("****Company Name****", max_chars=20, key="3")
