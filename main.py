@@ -130,6 +130,8 @@ if selected == "Employee":
                     if st.session_state.store !="":
                         if st.button("Submit"):
                             scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
+                            scope = ['https://www.googleapis.com/auth/spreadsheets', 'https://www.googleapis.com/auth/drive']
+
                         #     # Write
                         #create this on secrects / TOML
                         ## google_service_account = {"type" = "service_account", "project_id", AND_SO_ON}
