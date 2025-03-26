@@ -244,14 +244,16 @@ if selected == "Employee":
                         # 12. هل تعمل في منتجات اليوس؟ (Do you work with Yous products?)
                         st.session_state.work_with_yous = st.radio("هل تعمل في منتجات اليوس؟", ["نعم", "لا"])
 
+
                         # 13. في حالة الاجابة ب لا هل عندك سجل تجاري وبطاقة ضريبية سارية ومحتاج تشتغل بيهم ؟
-                        if st.session_state.work_with_yous == "لا":
-                            st.session_state.has_commercial_register = st.radio(
+                        st.session_state.has_commercial_register = st.radio(
                                 "في حالة الاجابة ب لا هل عندك سجل تجاري وبطاقة ضريبية سارية ومحتاج تشتغل بيهم ؟",
-                                ["نعم", "لا", "متعامل فعلا"]
-                            )
-                        else:
-                            st.session_state.has_commercial_register = ""
+                                ["نعم", "لا", "متعامل فعلا"])
+
+
+                            # 12. هل تعمل في منتجات اليوس؟ (Do you work with Yous products?)
+                        st.session_state.work_with_anasia = st.radio("هل تعمل مع أناسيا؟", ["نعم", "لا"])
+
 
                         # 14. عندك ايه من اليوس ليد بالب ؟ (Which Yous LED bulbs do you have?)
                         st.session_state.yous_led_bulbs = st.multiselect(
@@ -292,64 +294,57 @@ if selected == "Employee":
                         # 20. هل في مواد دعاية ل اليوس ؟ (Are there promotional materials for Yous?)
                         st.session_state.yous_promo_materials = st.multiselect(
                             "هل في مواد دعاية ل اليوس ؟",
-                            ["يافطة", "لايت بوكس", "لا يوجد"]
+                            ["يافطة", "لايت بوكس","ستاند داون لايت", "لا يوجد"]
                         )
 
                         # 21. يوجد استاند اليوس ؟ (Is there a Yous stand?)
                         st.session_state.has_yous_stand = st.radio(
-                            "يوجد استاند اليوس ؟",
-                            ["نعم", "لا"]
-                        )
-
-                        # 22. حالة الاستاند ؟ (Condition of the stand?)
-                        st.session_state.stand_condition = st.radio(
-                            "حالة الاستاند ؟",
-                            ["نعم", "لا"]
+                            "هل يوجد استاند اليوس ؟",
+                            ["جيد", "يحتاج صيانة", "في المخزن", "لا يوجد"]
                         )
 
                         # 23. التعليق ؟ (Comments?)
                         st.session_state.comments = st.text_area("التعليق ؟")
 
+                        required_data  = [st.session_state.code,
+                                    st.session_state.name,
+                                    Project,
+                                    st.session_state.date,
+                                    st.session_state.store,
+                                    location,
+                                    utc,
+                                    Now,
+                                    timediff,
+                                    latitude,
+                                    longitude,
+                                    st.session_state.visitdate,
+                                    st.session_state.reviewer_name,
+                                    st.session_state.governorate,
+                                    st.session_state.center,
+                                    st.session_state.region,
+                                    st.session_state.detailed_address,
+                                    st.session_state.landmark,
+                                    st.session_state.responsible_name,
+                                    st.session_state.responsible_number,
+                                    st.session_state.store_size,
+                                    st.session_state.work_with_yous,
+                                    st.session_state.has_commercial_register,
+                                    st.session_state.work_with_anasia,
+                                    st.session_state.yous_led_bulbs,
+                                    st.session_state.yous_led_tubes,
+                                    st.session_state.yous_sockets,
+                                    st.session_state.yous_lighting,
+                                    st.session_state.yous_breakers_tape,
+                                    st.session_state.work_in_supplies,
+                                    st.session_state.yous_promo_materials,
+                                    st.session_state.has_yous_stand,
+                                    st.session_state.comments
+                                ]
                     except:
                         st.write("Loading.................")
-                    if st.session_state.store != "":
+                    if all(required_data[:31]):
                         if st.button("Submit"):
-                            row = row = [str(value) if value else "" for value in [
-                                                                                    st.session_state.code,
-                                                                                    st.session_state.name,
-                                                                                    Project,
-                                                                                    st.session_state.date,
-                                                                                    st.session_state.store,
-                                                                                    location,
-                                                                                    utc,
-                                                                                    Now,
-                                                                                    timediff,
-                                                                                    latitude,
-                                                                                    longitude,
-                                                                                    st.session_state.visitdate,
-                                                                                    st.session_state.reviewer_name,
-                                                                                    st.session_state.governorate,
-                                                                                    st.session_state.center,
-                                                                                    st.session_state.region,
-                                                                                    st.session_state.detailed_address,
-                                                                                    st.session_state.landmark,
-                                                                                    st.session_state.responsible_name,
-                                                                                    st.session_state.responsible_number,
-                                                                                    st.session_state.store_size,
-                                                                                    st.session_state.work_with_yous,
-                                                                                    st.session_state.has_commercial_register,
-                                                                                    st.session_state.yous_led_bulbs,
-                                                                                    st.session_state.yous_led_tubes,
-                                                                                    st.session_state.yous_sockets,
-                                                                                    st.session_state.yous_lighting,
-                                                                                    st.session_state.yous_breakers_tape,
-                                                                                    st.session_state.work_in_supplies,
-                                                                                    st.session_state.yous_promo_materials,
-                                                                                    st.session_state.has_yous_stand,
-                                                                                    st.session_state.stand_condition,
-                                                                                    st.session_state.comments
-                                                                                ]]
-
+                            row = [str(value) if value else "" for value in required_data]
                             write_to_google_sheets(row)
                             ti.sleep(2)
                             st.session_state.code = ""
