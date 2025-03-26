@@ -169,13 +169,187 @@ if selected == "Employee":
                         address = location.raw['address']
                         st.write(actual_coordinates, " \n ", location)
                         st.session_state.store = st.text_input("****Enter store name****")
+
+                        # Display coordinates in a text input field
+                        copy_input = st.text_input("📍 Coordinates:", actual_coordinates)
+
+                        # JavaScript to copy text to clipboard
+                        st.markdown(
+                            """
+                            <script>
+                            function copyToClipboard() {
+                                var copyText = document.getElementById("copy_input");
+                                copyText.select();
+                                document.execCommand("copy");
+                                alert("Copied: " + copyText.value);
+                            }
+                            </script>
+                            """,
+                            unsafe_allow_html=True
+                        )
+
+                        # Button to trigger copy function
+                        st.markdown(
+                            """
+                            <button onclick="copyToClipboard()" style="background-color:#008CBA; color:white; padding:8px 12px; border:none; 
+                            border-radius:5px; font-size:14px; cursor:pointer;">📋 Copy Coordinates</button>
+                            """,
+                            unsafe_allow_html=True
+                        )
+
+                        #linkbutton
+                        st.markdown(
+                            '<a href="https://forms.gle/veLwxXtN2irKPLmR9" target="_blank">'
+                            '<button style="background-color:#4CAF50; color:white; padding:10px 24px; border:none; '
+                            'border-radius:5px; font-size:16px; cursor:pointer;">📝 Open Survey Form</button></a>',
+                            unsafe_allow_html=True
+                        )
+
+
+                        # Now show the survey form
+                        st.header("Store Survey Form")
+                        # 1. التاريخ (Date)
+                        st.session_state.visitdate = st.date_input("التاريخ")
+
+                        # 2. اسم المراجع (Reviewer's Name)
+                        st.session_state.reviewer_name = st.text_input("اسم المراجع")
+
+                        # 3. المحافظة (Governorate)
+                        st.session_state.governorate = st.text_input("المحافظة")
+
+                        # 4. المركز (Center)
+                        st.session_state.center = st.text_input("المركز")
+
+                        # 5. المنطقة (Region)
+                        st.session_state.region = st.text_input("المنطقة")
+
+                        # 6. العنوان بالتفصيل (Detailed Address)
+                        st.session_state.detailed_address = st.text_input("العنوان بالتفصيل")
+
+                        # 7. علامة مميزة (Landmark)
+                        st.session_state.landmark = st.text_input("علامة مميزة")
+
+                        # # 8. اسم المحل (Store Name)
+                        # store_name = st.text_input("اسم المحل")
+
+                        # 9. اسم المسؤل (Responsible Person's Name)
+                        st.session_state.responsible_name = st.text_input("اسم المسؤل")
+
+                        # 10. رقم المسؤل (Responsible Person's Number)
+                        st.session_state.responsible_number = st.text_input("رقم المسؤل")
+
+                        # 11. حجم المحل (Store Size)
+                        st.session_state.store_size = st.radio("حجم المحل", ["كبير", "متوسط", "صغير"])
+
+                        # 12. هل تعمل في منتجات اليوس؟ (Do you work with Yous products?)
+                        st.session_state.work_with_yous = st.radio("هل تعمل في منتجات اليوس؟", ["نعم", "لا"])
+
+                        # 13. في حالة الاجابة ب لا هل عندك سجل تجاري وبطاقة ضريبية سارية ومحتاج تشتغل بيهم ؟
+                        if st.session_state.work_with_yous == "لا":
+                            st.session_state.has_commercial_register = st.radio(
+                                "في حالة الاجابة ب لا هل عندك سجل تجاري وبطاقة ضريبية سارية ومحتاج تشتغل بيهم ؟",
+                                ["نعم", "لا", "متعامل فعلا"]
+                            )
+                        else:
+                            st.session_state.has_commercial_register = ""
+
+                        # 14. عندك ايه من اليوس ليد بالب ؟ (Which Yous LED bulbs do you have?)
+                        st.session_state.yous_led_bulbs = st.multiselect(
+                            "عندك ايه من اليوس ليد بالب ؟",
+                            ["9W", "12W", "15W", "18W", "23W", "30W", "45W", "لا يعمل"]
+                        )
+
+                        # 15. عندك ايه من اليوس الليد تيوب ؟ (Which Yous LED tubes do you have?)
+                        st.session_state.yous_led_tubes = st.multiselect(
+                            "عندك ايه من اليوس الليد تيوب ؟",
+                            ["60 CM", "120 CM", "لا يعمل"]
+                        )
+
+                        # 16. عندك ايه من مشتركات اليوس ؟ (Which Yous sockets do you have?)
+                        st.session_state.yous_sockets = st.multiselect(
+                            "عندك ايه من مشتركات اليوس ؟",
+                            ["بسلك", "بدون سلك", "لا يعمل"]
+                        )
+
+                        # 17. عندك ايه من اضاءة اليوس ؟ (Which Yous lighting do you have?)
+                        st.session_state.yous_lighting = st.multiselect(
+                            "عندك ايه من اضاءة اليوس ؟",
+                            ["داون لايت", "سبوت لايت", "كاندل", "كاسة", "لا يعمل"]
+                        )
+
+                        # 18. عندك قواطع وشريط لحام اليوس ؟ (Do you have Yous breakers and soldering tape?)
+                        st.session_state.yous_breakers_tape = st.multiselect(
+                            "عندك قواطع وشريط لحام اليوس ؟",
+                            ["قواطع", "شريط لحام", "لا يعمل"]
+                        )
+
+                        # 19. هل تعمل توريدات ؟ (Do you work in supplies?)
+                        st.session_state.work_in_supplies = st.radio(
+                            "هل تعمل توريدات ؟",
+                            ["نعم", "لا"]
+                        )
+
+                        # 20. هل في مواد دعاية ل اليوس ؟ (Are there promotional materials for Yous?)
+                        st.session_state.yous_promo_materials = st.multiselect(
+                            "هل في مواد دعاية ل اليوس ؟",
+                            ["يافطة", "لايت بوكس", "لا يوجد"]
+                        )
+
+                        # 21. يوجد استاند اليوس ؟ (Is there a Yous stand?)
+                        st.session_state.has_yous_stand = st.radio(
+                            "يوجد استاند اليوس ؟",
+                            ["نعم", "لا"]
+                        )
+
+                        # 22. حالة الاستاند ؟ (Condition of the stand?)
+                        st.session_state.stand_condition = st.radio(
+                            "حالة الاستاند ؟",
+                            ["نعم", "لا"]
+                        )
+
+                        # 23. التعليق ؟ (Comments?)
+                        st.session_state.comments = st.text_area("التعليق ؟")
+
                     except:
                         st.write("Loading.................")
                     if st.session_state.store != "":
                         if st.button("Submit"):
-                            row = [st.session_state.code, st.session_state.name, Project, st.session_state.date,
-                                   st.session_state.store, str(location), str(utc), str(Now), str(timediff), latitude,
-                                   longitude]
+                            row = row = [str(value) if value else "" for value in [
+                                                                                    st.session_state.code,
+                                                                                    st.session_state.name,
+                                                                                    Project,
+                                                                                    st.session_state.date,
+                                                                                    st.session_state.store,
+                                                                                    location,
+                                                                                    utc,
+                                                                                    Now,
+                                                                                    timediff,
+                                                                                    latitude,
+                                                                                    longitude,
+                                                                                    st.session_state.visitdate,
+                                                                                    st.session_state.reviewer_name,
+                                                                                    st.session_state.governorate,
+                                                                                    st.session_state.center,
+                                                                                    st.session_state.region,
+                                                                                    st.session_state.detailed_address,
+                                                                                    st.session_state.landmark,
+                                                                                    st.session_state.responsible_name,
+                                                                                    st.session_state.responsible_number,
+                                                                                    st.session_state.store_size,
+                                                                                    st.session_state.work_with_yous,
+                                                                                    st.session_state.has_commercial_register,
+                                                                                    st.session_state.yous_led_bulbs,
+                                                                                    st.session_state.yous_led_tubes,
+                                                                                    st.session_state.yous_sockets,
+                                                                                    st.session_state.yous_lighting,
+                                                                                    st.session_state.yous_breakers_tape,
+                                                                                    st.session_state.work_in_supplies,
+                                                                                    st.session_state.yous_promo_materials,
+                                                                                    st.session_state.has_yous_stand,
+                                                                                    st.session_state.stand_condition,
+                                                                                    st.session_state.comments
+                                                                                ]]
+
                             write_to_google_sheets(row)
                             ti.sleep(2)
                             st.session_state.code = ""
@@ -232,7 +406,7 @@ elif selected == "Company":
 
 elif selected == "Elios Route":
     text1, text2 = st.empty(), st.empty()
-    Companynameoriginal = "ELIOS"
+    Companynameoriginal = "Elios"
     Passwordoriginal = "1234"
 
     Companyname = text1.text_input("****Company Name****", max_chars=20, key="3")
