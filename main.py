@@ -70,6 +70,7 @@ def get_google_sheets_connection():
 
 
 # Function to fetch employee data
+@st.cache_data(ttl=600)
 def fetch_and_clean_data():
     try:
         client = get_google_sheets_connection()
