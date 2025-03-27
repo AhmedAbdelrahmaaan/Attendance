@@ -343,7 +343,7 @@ if selected == "Employee":
                                 ]
                     except:
                         st.write("Loading.................")
-                    if all(required_data[:31]):
+                    if all(st.session_state.required_data[:31]):
                         if st.button("Submit"):
                             row = [str(value) if value else "" for value in st.session_state.required_data]
                             write_to_google_sheets(row)
