@@ -162,7 +162,6 @@ if selected == "Employee":
                         user_agent = 'My App {}'.format(randint(1, 99999))
                         geolocator = Nominatim(user_agent=user_agent)
                         loc = get_geolocation()
-                        st.write("Location Data:", loc)
                         ti.sleep(2)
                         latitude = loc['coords']['latitude']
                         longitude = loc['coords']['longitude']
@@ -348,9 +347,6 @@ if selected == "Employee":
                                 ]
                     except Exception as e:
                         st.write("Loading.................")
-                        st.error(f"An error occurred: {str(e)}")
-                        st.text("Error details:")
-                        st.text(traceback.format_exc())
                     if all(required_data[:31]):
                         if st.button("Submit"):
                             row = [str(value) if value else "" for value in required_data]
