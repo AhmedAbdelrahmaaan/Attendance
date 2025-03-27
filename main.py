@@ -159,10 +159,10 @@ if selected == "Employee":
                 placeholder4.empty()
                 if st.checkbox("Check my location"):
                     try:
-                        user_agent = 'My App {}'.format(randint(1, 99999))
+                        user_agent = 'My App elios'
                         geolocator = Nominatim(user_agent=user_agent)
                         loc = get_geolocation()
-                        ti.sleep(1)
+                        ti.sleep(2)
                         latitude = loc['coords']['latitude']
                         longitude = loc['coords']['longitude']
                         actual_coordinates = "{},{}".format(latitude, longitude)
@@ -307,7 +307,7 @@ if selected == "Employee":
                         # 23. التعليق ؟ (Comments?)
                         st.session_state.comments = st.text_area("التعليق ؟")
 
-                        st.session_state.required_data  = [st.session_state.code,
+                        required_data  = [st.session_state.code,
                                     st.session_state.name,
                                     Project,
                                     st.session_state.date,
@@ -343,9 +343,9 @@ if selected == "Employee":
                                 ]
                     except:
                         st.write("Loading.................")
-                    if all(st.session_state.required_data[:31]):
+                    if all(required_data[:31]):
                         if st.button("Submit"):
-                            row = [str(value) if value else "" for value in st.session_state.required_data]
+                            row = [str(value) if value else "" for value in required_data]
                             write_to_google_sheets(row)
                             ti.sleep(2)
                             st.session_state.code = ""
