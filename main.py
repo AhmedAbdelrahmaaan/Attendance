@@ -167,8 +167,12 @@ if selected == "Employee":
                         latitude = loc['coords']['latitude']
                         longitude = loc['coords']['longitude']
                         actual_coordinates = "{},{}".format(latitude, longitude)
-                        location = 'NA' #geolocator.reverse(actual_coordinates)
-                        address = 'NA' #location.raw['address']
+                        try:
+                            location = geolocator.reverse(f"{latitude},{longitude}", timeout=10)
+                             address = location.raw['address']
+                        except:
+                            location = 'NA' #geolocator.reverse(actual_coordinates)
+                            address = 'NA' #location.raw['address']
                         st.write(actual_coordinates, " \n ", location)
                         st.session_state.store = st.text_input("****Enter store name****")
 
