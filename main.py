@@ -344,6 +344,9 @@ if selected == "Employee":
                                 ]
                     except:
                         st.write("Loading.................")
+                        st.error(f"An error occurred: {str(e)}")
+                        st.text("Error details:")
+                        st.text(traceback.format_exc())
                     if all(required_data[:31]):
                         if st.button("Submit"):
                             row = [str(value) if value else "" for value in required_data]
