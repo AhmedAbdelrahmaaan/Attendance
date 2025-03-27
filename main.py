@@ -159,7 +159,7 @@ if selected == "Employee":
                 placeholder4.empty()
                 if st.checkbox("Check my location"):
                     try:
-                        user_agent = 'My App elios'
+                        user_agent = 'My App {}'.format(randint(1, 99999))
                         geolocator = Nominatim(user_agent=user_agent)
                         loc = get_geolocation()
                         st.write("Location Data:", loc)
@@ -167,8 +167,8 @@ if selected == "Employee":
                         latitude = loc['coords']['latitude']
                         longitude = loc['coords']['longitude']
                         actual_coordinates = "{},{}".format(latitude, longitude)
-                        location = geolocator.reverse(actual_coordinates)
-                        address = location.raw['address']
+                        location = 'NA' #geolocator.reverse(actual_coordinates)
+                        address = 'NA' #location.raw['address']
                         st.write(actual_coordinates, " \n ", location)
                         st.session_state.store = st.text_input("****Enter store name****")
 
