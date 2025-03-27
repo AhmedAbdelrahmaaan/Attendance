@@ -169,7 +169,7 @@ if selected == "Employee":
                         actual_coordinates = "{},{}".format(latitude, longitude)
                         try:
                             location = geolocator.reverse(f"{latitude},{longitude}", timeout=10)
-                             address = location.raw['address']
+                            address = location.raw['address']
                         except:
                             location = 'NA' #geolocator.reverse(actual_coordinates)
                             address = 'NA' #location.raw['address']
