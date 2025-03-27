@@ -155,6 +155,8 @@ if selected == "Employee":
                 nonConfirm = placeholder4.checkbox("Not Confirmed ❌")
 
             if Confirm:
+                placeholder3.empty()
+                placeholder4.empty()
                 st.session_state.location = "NA"
                 get_location = st.checkbox("Check my location")
                 actual_coordinates = "Not Available"
@@ -332,7 +334,7 @@ if selected == "Employee":
 
             elif nonConfirm:
                 st.session_state.code = ""
-                st.rerun()
+                st._rerun()
                 st.warning("Please re-enter your code.")
 
 elif selected == "Company":
