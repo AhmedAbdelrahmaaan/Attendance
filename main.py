@@ -307,10 +307,7 @@ if selected == "Employee":
                         # 23. التعليق ؟ (Comments?)
                         st.session_state.comments = st.text_area("التعليق ؟")
 
-                    except:
-                        st.write("Loading.................")
-
-                    required_data  = [st.session_state.code,
+                        required_data  = [st.session_state.code,
                                     st.session_state.name,
                                     Project,
                                     st.session_state.date,
@@ -344,6 +341,8 @@ if selected == "Employee":
                                     st.session_state.has_yous_stand,
                                     st.session_state.comments
                                 ]
+                    except:
+                        st.write("Loading.................")
                     if all(required_data[:31]):
                         if st.button("Submit"):
                             row = [str(value) if value else "" for value in required_data]
