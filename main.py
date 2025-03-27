@@ -307,7 +307,7 @@ if selected == "Employee":
                         # 23. التعليق ؟ (Comments?)
                         st.session_state.comments = st.text_area("التعليق ؟")
 
-                        required_data  = [st.session_state.code,
+                        st.session_state.required_data  = [st.session_state.code,
                                     st.session_state.name,
                                     Project,
                                     st.session_state.date,
@@ -345,7 +345,7 @@ if selected == "Employee":
                         st.write("Loading.................")
                     if all(required_data[:31]):
                         if st.button("Submit"):
-                            row = [str(value) if value else "" for value in required_data]
+                            row = [str(value) if value else "" for value in st.session_state.required_data]
                             write_to_google_sheets(row)
                             ti.sleep(2)
                             st.session_state.code = ""
