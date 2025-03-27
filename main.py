@@ -162,6 +162,7 @@ if selected == "Employee":
                         user_agent = 'My App elios'
                         geolocator = Nominatim(user_agent=user_agent)
                         loc = get_geolocation()
+                        st.write("Location Data:", loc)
                         ti.sleep(2)
                         latitude = loc['coords']['latitude']
                         longitude = loc['coords']['longitude']
