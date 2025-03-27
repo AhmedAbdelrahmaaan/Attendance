@@ -342,7 +342,7 @@ if selected == "Employee":
                                     st.session_state.has_yous_stand,
                                     st.session_state.comments
                                 ]
-                    except:
+                        except Exception as e:
                         st.write("Loading.................")
                         st.error(f"An error occurred: {str(e)}")
                         st.text("Error details:")
