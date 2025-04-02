@@ -227,14 +227,16 @@ if selected == "Employee":
                     # 12. هل تعمل في منتجات اليوس؟ (Do you work with Yous products?)
                     st.session_state.work_with_yous = st.radio("هل تعمل في منتجات اليوس؟", ["نعم", "لا"])
 
-                    # 13. في حالة الاجابة ب لا هل عندك سجل تجاري وبطاقة ضريبية سارية ومحتاج تشتغل بيهم ؟
+                    # 12. هل تعمل في منتجات اليوس؟ (Do you work with Yous products?)
+                    st.session_state.work_with_anasia = st.radio("هل تعمل مع أناسيا؟", ["نعم", "لا"])
+
+
+                  # 13. في حالة الاجابة ب لا هل عندك سجل تجاري وبطاقة ضريبية سارية ومحتاج تشتغل بيهم ؟
                     st.session_state.has_commercial_register = st.radio(
                         "في حالة الاجابة ب لا هل عندك سجل تجاري وبطاقة ضريبية سارية ومحتاج تشتغل بيهم ؟",
                         ["نعم", "لا", "متعامل فعلا"])
 
-                    # 12. هل تعمل في منتجات اليوس؟ (Do you work with Yous products?)
-                    st.session_state.work_with_anasia = st.radio("هل تعمل مع أناسيا؟", ["نعم", "لا"])
-
+                    
                     # 14. عندك ايه من اليوس ليد بالب ؟ (Which Yous LED bulbs do you have?)
                     st.session_state.yous_led_bulbs = st.multiselect(
                         "عندك ايه من اليوس ليد بالب ؟",
