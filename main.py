@@ -312,10 +312,10 @@ if selected == "Employee":
                                          st.session_state.responsible_name,
                                          st.session_state.responsible_number,
                                          st.session_state.store_size,
-                                         st.session_state.work_with_yous,
-                                                                                 st.session_state.work_with_anasia,
+                                         st.session_state.work_with_yous,                                                                          
+                                         st.session_state.work_with_anasia,
 
-st.session_state.has_commercial_register,
+                                         st.session_state.has_commercial_register,
                                          st.session_state.yous_led_bulbs,
                                          st.session_state.yous_led_tubes,
                                          st.session_state.yous_sockets,
