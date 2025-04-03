@@ -174,7 +174,7 @@ if selected == "Employee":
                         st.session_state.location = location
                         st.write(actual_coordinates, " \n ", location)
                     except Exception as e:
-                        st.error(f"Error getting location: {e}")
+                        st.error(" ..........برجاء التأكد أن بيانات الموقع (اللوكيشن) مفتوحة")
 
                 st.text_input("📍 Coordinates:", actual_coordinates, disabled=True)
 
@@ -314,7 +314,6 @@ if selected == "Employee":
                                          st.session_state.store_size,
                                          st.session_state.work_with_yous,                                                                          
                                          st.session_state.work_with_anasia,
-
                                          st.session_state.has_commercial_register,
                                          st.session_state.yous_led_bulbs,
                                          st.session_state.yous_led_tubes,
