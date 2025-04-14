@@ -162,7 +162,7 @@ if selected == "Employee":
                 actual_coordinates = "Not Available"
 
                 if get_location:
-                     user_agent = f"MyApp{randint(1, 99999)}"
+                    user_agent = f"MyApp{randint(1, 99999)}"
                         # user_agent = "ELIOSAPP"
                     geolocator = Nominatim(user_agent=user_agent)
                     loc = get_geolocation()
