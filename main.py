@@ -176,8 +176,12 @@ if selected == "Employee":
                         st.session_state.location = location
                         st.write(location)
                     except Exception as e:
-                        location = "NA"
-                        st.session_state.location = "NA"
+                        API_KEY = 'pk.0c7d28f9370f151a574dc5d02c8323a0'
+                        url = f"https://us1.locationiq.com/v1/reverse.php?key={API_KEY}&lat={latitude}&lon={longitude}&format=json"
+                        response = requests.get(url)
+                        data = response.json()
+                        location = data.get("display_name", "Location not found")
+                        st.session_state.location = "location"
                         # st.error(" ..........برجاء التأكد أن بيانات الموقع (اللوكيشن) مفتوحة")
                         
 
