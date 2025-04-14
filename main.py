@@ -161,7 +161,7 @@ if selected == "Employee":
                 get_location = st.checkbox("Check my location")
                 actual_coordinates = "Not Available"
                 
-               if get_location:
+                if get_location:
                     user_agent = f"MyApp{randint(1, 99999)}"
                         # user_agent = "ELIOSAPP"
                     geolocator = Nominatim(user_agent=user_agent)
