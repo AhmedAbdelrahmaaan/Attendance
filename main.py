@@ -171,11 +171,12 @@ if selected == "Employee":
                         latitude = loc['coords']['latitude']
                         longitude = loc['coords']['longitude']
                         actual_coordinates = f"{latitude},{longitude}"
-                        location = geolocator.reverse(f"{latitude},{longitude}", timeout=10)
-                        st.session_state.location = location
-                        st.write(actual_coordinates, " \n ", location)
+                        # location = geolocator.reverse(f"{latitude},{longitude}", timeout=10)
+                        # st.session_state.location = location
+                        st.write(actual_coordinates) #, " \n ", location)
                     except Exception as e:
-                        st.error(" ..........برجاء التأكد أن بيانات الموقع (اللوكيشن) مفتوحة" , str(e))
+                        st.error(" ..........برجاء التأكد أن بيانات الموقع (اللوكيشن) مفتوحة")
+                        
 
                 st.text_input("📍 Coordinates:", actual_coordinates, disabled=True)
 
