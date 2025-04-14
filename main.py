@@ -175,7 +175,7 @@ if selected == "Employee":
                         st.session_state.location = location
                         st.write(actual_coordinates, " \n ", location)
                     except Exception as e:
-                        st.error(" ..........برجاء التأكد أن بيانات الموقع (اللوكيشن) مفتوحة" , e)
+                        st.error(" ..........برجاء التأكد أن بيانات الموقع (اللوكيشن) مفتوحة" , str(e))
 
                 st.text_input("📍 Coordinates:", actual_coordinates, disabled=True)
 
