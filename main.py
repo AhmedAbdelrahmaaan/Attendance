@@ -176,6 +176,7 @@ if selected == "Employee":
                         st.session_state.location = location
                         st.write(location)
                     except Exception as e:
+                        location = "NA"
                         st.session_state.location = "NA"
                         # st.error(" ..........برجاء التأكد أن بيانات الموقع (اللوكيشن) مفتوحة")
                         
