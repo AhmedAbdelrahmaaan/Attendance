@@ -160,24 +160,34 @@ if selected == "Employee":
                 st.session_state.location = "NA"
                 get_location = st.checkbox("Check my location")
                 actual_coordinates = "Not Available"
-
-                try:
-                    location = geolocator.reverse(f"{latitude},{longitude}", timeout=10)
-                    st.session_state.location = location
-                    st.write(location)
-                except Exception as e:
+                
+               if get_location:
+                    user_agent = f"MyApp{randint(1, 99999)}"
+                        # user_agent = "ELIOSAPP"
+                    geolocator = Nominatim(user_agent=user_agent)
+                    loc = get_geolocation()
+                    ti.sleep(2)
+                    latitude = loc['coords']['latitude']
+                    longitude = loc['coords']['longitude']
+                    actual_coordinates = f"{latitude},{longitude}"
+                    st.write(actual_coordinates)
                     try:
-                        import requests
-                        API_KEY = 'pk.0c7d28f9370f151a574dc5d02c8323a0'
-                        url = f"https://us1.locationiq.com/v1/reverse.php?key={API_KEY}&lat={latitude}&lon={longitude}&format=json"
-                        response = requests.get(url)
-                        data = response.json()
-                        location = data.get("display_name", "Location not found")
+                        location = geolocator.reverse(f"{latitude},{longitude}", timeout=10)
                         st.session_state.location = location
-                    except Exception as e2:
-                        location = "NA"
-                        st.session_state.location ="NA"
-                        # st.error(" ..........برجاء التأكد أن بيانات الموقع (اللوكيشن) مفتوحة")
+                        st.write(location)
+                    except Exception as e:
+                        try:
+                            import requests
+                            API_KEY = 'pk.0c7d28f9370f151a574dc5d02c8323a0'
+                            url = f"https://us1.locationiq.com/v1/reverse.php?key={API_KEY}&lat={latitude}&lon={longitude}&format=json"
+                            response = requests.get(url)
+                            data = response.json()
+                            location = data.get("display_name", "Location not found")
+                            st.session_state.location = location
+                        except Exception as e2:
+                            location = "NA"
+                            st.session_state.location ="NA"
+                            # st.error(" ..........برجاء التأكد أن بيانات الموقع (اللوكيشن) مفتوحة")
                         
 
                 st.text_input("📍 Coordinates:", actual_coordinates, disabled=True)
