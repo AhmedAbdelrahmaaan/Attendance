@@ -162,20 +162,22 @@ if selected == "Employee":
                 actual_coordinates = "Not Available"
 
                 if get_location:
+                     user_agent = f"MyApp{randint(1, 99999)}"
+                        # user_agent = "ELIOSAPP"
+                    geolocator = Nominatim(user_agent=user_agent)
+                    loc = get_geolocation()
+                    ti.sleep(2)
+                    latitude = loc['coords']['latitude']
+                    longitude = loc['coords']['longitude']
+                    actual_coordinates = f"{latitude},{longitude}"
+                    st.write(actual_coordinates)
                     try:
-                        # user_agent = f"MyApp{randint(1, 99999)}"
-                        user_agent = "ELIOSAPP"
-                        geolocator = Nominatim(user_agent=user_agent)
-                        loc = get_geolocation()
-                        ti.sleep(2)
-                        latitude = loc['coords']['latitude']
-                        longitude = loc['coords']['longitude']
-                        actual_coordinates = f"{latitude},{longitude}"
-                        # location = geolocator.reverse(f"{latitude},{longitude}", timeout=10)
-                        # st.session_state.location = location
-                        st.write(actual_coordinates) #, " \n ", location)
+                        location = geolocator.reverse(f"{latitude},{longitude}", timeout=10)
+                        st.session_state.location = location
+                        st.write(location)
                     except Exception as e:
-                        st.error(" ..........برجاء التأكد أن بيانات الموقع (اللوكيشن) مفتوحة")
+                        st.session_state.location = "NA"
+                        # st.error(" ..........برجاء التأكد أن بيانات الموقع (اللوكيشن) مفتوحة")
                         
 
                 st.text_input("📍 Coordinates:", actual_coordinates, disabled=True)
