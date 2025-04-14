@@ -163,7 +163,8 @@ if selected == "Employee":
 
                 if get_location:
                     try:
-                        user_agent = f"MyApp{randint(1, 99999)}"
+                        # user_agent = f"MyApp{randint(1, 99999)}"
+                        user_agent = "ELIOSAPP"
                         geolocator = Nominatim(user_agent=user_agent)
                         loc = get_geolocation()
                         ti.sleep(2)
