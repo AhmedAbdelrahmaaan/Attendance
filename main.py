@@ -301,6 +301,9 @@ if selected == "Employee":
                     # 23. التعليق ؟ (Comments?)
                     st.session_state.comments = st.text_area("التعليق ؟")
 
+                     # 12. هل تعمل في منتجات اليوس؟ (Do you work with Yous products?)
+                    st.session_state.fawry = st.radio("هل يوجد ماكينة فوري؟", ["نعم", "لا"])
+
                     submitted = st.form_submit_button("Submit")
 
                     if submitted:
@@ -339,7 +342,7 @@ if selected == "Employee":
                                          ]
 
                         if all(required_data):
-                            row = [str(value) if value else "" for value in required_data] + [st.session_state.comments]
+                            row = [str(value) if value else "" for value in required_data] + [st.session_state.comments]+[st.session_state.fawry]
                             write_to_google_sheets(row)
                             ti.sleep(2)
                             st.session_state.code = ""
